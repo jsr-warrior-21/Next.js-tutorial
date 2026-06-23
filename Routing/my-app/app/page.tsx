@@ -5,7 +5,9 @@ export default function home(){
     <h1>Welcome to the Home !!</h1><br />
     <Link href="/blog" className="p-3">Blog</Link>
     <Link href="/products" className="p-3">Products</Link>
-    <Link href="/article">article</Link>
+    <Link href="/articles/breaking-news-123?lang=en">English</Link>
+    <Link href="/articles/breaking-news-123?lang=fr">French</Link>
+
     </>
   )
 }
