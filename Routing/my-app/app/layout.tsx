@@ -32,13 +32,13 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col ">
         
-        <header className="h-auto bg-amber-400 text-2xl text-white">
+        <header className="flex flex-1 bg-amber-400 text-2xl text-white">
           <h1>Header</h1>
         </header>
 
         {children}
         
-        <footer className="h-auto bg-gray-500 text-2xl text-white">
+        <footer className="flex flex-1 bg-gray-500 text-2xl text-white">
             <h1>Footer</h1>
         </footer>
         
