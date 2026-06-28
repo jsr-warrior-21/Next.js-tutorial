@@ -5,7 +5,7 @@ export const metadata = {
 export default function counter(){
     return(
         <>
-        <Counter/>
+        <Counter/> 
         </>
     )
 }
