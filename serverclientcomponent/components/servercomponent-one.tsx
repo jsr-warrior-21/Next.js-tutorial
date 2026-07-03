@@ -10,7 +10,7 @@ export const ServerComponentOne = () => {
   return (
     <>
       {/* <ServerComponentTwo /> */}
-      <ClientComponentone/>
+      {/* <ClientComponentone/> */}
       <h1>Server Component One</h1>
     </>
   );
