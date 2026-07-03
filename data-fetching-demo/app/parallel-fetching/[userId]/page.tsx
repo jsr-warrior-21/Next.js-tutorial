@@ -33,10 +33,15 @@ export default async function Page({
   params: Promise<{ userId: string }>;
 }) {
   const { userId } = await params;
+  
+  // this is sequencial fetching - time taken 2 cause one after second
+  //  const posts: Post[] = await getUserPosts(userId);
+  // const albums: Album[] = await getUserAlbums(userId);
+
+  // this is parallel fetching - time taken 1 case runnig parallely
 
   const postsData = getUserPosts(userId);
   const albumsData = getUserAlbums(userId);
-
   const [posts, albums] = await Promise.all([postsData, albumsData]);
   return (
     <div className="p-4 max-w-7xl mx-auto">
@@ -72,3 +77,62 @@ export default async function Page({
     </div>
   );
 }
+
+
+
+
+// ============================================
+// QUICK COMPARISON: Promise.all vs allSettled vs race vs any
+// ============================================
+
+// Promise.all
+// Resolves when: all resolve
+// Rejects when:  any one rejects
+// Use case:      need everything, fail together
+// const p1 = Promise.all([promiseA, promiseB]);
+
+// Promise.allSettled
+// Resolves when: all settle (success or fail)
+// Rejects when:  never
+// Use case:      need everything, tolerate partial failure
+// const p2 = Promise.allSettled([promiseA, promiseB]);
+
+// Promise.race
+// Resolves when: first one settles
+// Rejects when:  first one settles (if it's a rejection)
+// Use case:      timeout, "whichever is fastest"
+// const p3 = Promise.race([promiseA, promiseB]);
+
+// Promise.any
+// Resolves when: first one succeeds
+// Rejects when:  all reject
+// Use case:      fallback/redundant sources
+// const p4 = Promise.any([promiseA, promiseB]);
+
+
+
+// why not using Album and Post type
+
+// case one - using like this
+
+// async function getUserPosts(userId: string): Promise<Post[]> {
+//   await new Promise((resolve) => setTimeout(resolve, 1000));
+//   const res = await fetch(
+//     `https://jsonplaceholder.typicode.com/posts?userId=${userId}`
+//   );
+//   return res.json();
+// }
+
+// async function getUserAlbums(userId: string): Promise<Album[]> {
+//   await new Promise((resolve) => setTimeout(resolve, 1000));
+//   const res = await fetch(
+//     `https://jsonplaceholder.typicode.com/albums?userId=${userId}`
+//   );
+//   return res.json();
+// }
+
+// second case --
+
+// const [posts, albums]: [Post[], Album[]] = await Promise.all([postsData, albumsData]);
+
+// third case - which i have used during the mapping of the element
