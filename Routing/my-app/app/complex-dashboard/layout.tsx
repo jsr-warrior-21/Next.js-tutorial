@@ -11,6 +11,8 @@ export default function ComplexDashboardLayout({
   notifications: React.ReactNode;
   login: React.ReactNode;
 }) {
+
+  // In Next.js App Router, parallel route slots are always passed as props to the nearest layout.tsx that sits at the same folder level. There's no other way to consume them; you can't import them manually, and they can't be used in any file other than that layout.
   const isLoggedIn = true;
   return isLoggedIn ? (
     <div>
