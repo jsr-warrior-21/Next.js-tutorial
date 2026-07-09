@@ -1,9 +1,13 @@
+"use client";
+
 import {
   SignInButton,
   SignOutButton,
   UserButton,
+  Show
 } from "@clerk/nextjs";
 import Link from "next/link";
+
 export const Navigation = () => {
   return (
     <nav className="bg-[var(--background)] border-b border-[var(--foreground)]/10">
@@ -12,13 +16,18 @@ export const Navigation = () => {
           <div className="flex-shrink-0">
             <h1 className="text-xl font-semibold text-[var(--foreground)]">
               Next.js App
-            </h1> 
+            </h1>
           </div>
           <div className="flex items-center gap-4">
-            <SignInButton mode="modal"/>
-            {/* <UserButton/> */}
-            <Link href="/user-profile">Profile</Link>
-            <SignOutButton/>
+            <Show when="signed-out">
+              <SignInButton mode="modal" />
+            </Show>
+
+            <Show when="signed-in">
+              <Link href="/user-profile">Profile</Link>
+              <SignOutButton />
+              {/* <UserButton /> */}
+            </Show>
           </div>
         </div>
       </div>
