@@ -4,7 +4,8 @@ import {
   SignInButton,
   SignOutButton,
   UserButton,
-  Show
+  SignUpButton,
+  Show,
 } from "@clerk/nextjs";
 import Link from "next/link";
 
@@ -21,6 +22,7 @@ export const Navigation = () => {
           <div className="flex items-center gap-4">
             <Show when="signed-out">
               <SignInButton mode="modal" />
+              <SignUpButton mode="modal"/>
             </Show>
 
             <Show when="signed-in">
