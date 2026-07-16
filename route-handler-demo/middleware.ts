@@ -26,7 +26,12 @@ import type { NextRequest } from "next/server";
 // Handling cookie via middleware
 
 export function middleware(request:NextRequest){
-  const response = NextResponse.next();
+  const response = NextResponse.next(); 
+
+  // this upper line tell to middleware Don't redirect,don't block -
+  // just move the request forward to whatever page it was going to. but
+  // give me a handle an reponse so i can modify it first; 
+
   const themePreference = response.cookies.get("theme");
   if(!themePreference){
     response.cookies.set("theme","dark");

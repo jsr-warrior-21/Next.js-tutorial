@@ -16,7 +16,7 @@ export async function GET(
   return Response.json(particularComment);
 }
 
-// dynamic post request
+// dynamic patch request
 
 export async function PATCH(
   request: Request,
